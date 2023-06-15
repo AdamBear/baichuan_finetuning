@@ -26,7 +26,7 @@ pip install -U transformers>=4.30 deepspeed xformers bitsandbytes>=0.39 accelera
 
 
 
-数据示例
+## data sample
 ```json
  {
      "id": 0, "paragraph": [
