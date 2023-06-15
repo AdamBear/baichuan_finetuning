@@ -4,9 +4,9 @@
 
 import torch
 from deep_training.data_helper import ModelArguments, DataArguments
-from transformers import HfArgumentParser
+from transformers import HfArgumentParser, BitsAndBytesConfig
 
-from data_utils import train_info_args, NN_DataHelper, get_deepspeed_config
+from data_utils import train_info_args, NN_DataHelper, get_deepspeed_config,global_args
 from models import MyTransformer, Generate,BaiChuanConfig,BaiChuanTokenizer
 
 deep_config = get_deepspeed_config()
@@ -19,10 +19,35 @@ if __name__ == '__main__':
     tokenizer, config, _,_= dataHelper.load_tokenizer_and_config(config_class_name=BaiChuanConfig,
                                                                  tokenizer_class_name=BaiChuanTokenizer)
     config.pad_token_id = config.eos_token_id
-    pl_model = MyTransformer(config=config, model_args=model_args,torch_dtype=config.torch_dtype,)
-    model = pl_model.get_llm_model()
 
-    model.eval().half().cuda()
+    load_in_4bit = False
+    if not load_in_4bit:
+        load_in_4bit_config = {}
+    else:
+        load_in_4bit_config = dict(
+            quantization_config=BitsAndBytesConfig(
+                load_in_4bit=True,
+                llm_int8_threshold=6.0,
+                llm_int8_has_fp16_weight=False,
+                bnb_4bit_compute_dtype=torch.float16,
+                bnb_4bit_use_double_quant=True,
+                bnb_4bit_quant_type="nf4",
+            ),
+            load_in_4bit=True,
+            # device_map="auto",
+            device_map={"": 0}  # 第一块卡
+        )
+
+    pl_model = MyTransformer(config=config, model_args=model_args,torch_dtype=torch.float16,
+                             **load_in_4bit_config,)
+
+    model = pl_model.get_llm_model()
+    model = model.eval()
+    model.requires_grad_(False)
+
+    if not load_in_4bit:
+        model = model.half()
+    model.cuda()
 
     text_list = ["写一个诗歌，关于冬天",
                  "晚上睡不着应该怎么办",
