@@ -50,7 +50,7 @@ if __name__ == '__main__':
                  ]
     for input in text_list:
         response, history = Generate.generate(model, query=input, tokenizer=tokenizer, max_length=512,
-                                          eos_token_id=config.eos_token_id,
+                                          eos_token_id=config.eos_token_id,pad_token_id=config.eos_token_id,
                                           do_sample=False, top_p=0.7, temperature=0.95, )
         print('input',input)
         print('output',response)
