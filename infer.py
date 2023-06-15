@@ -26,6 +26,8 @@ if __name__ == '__main__':
     text_list = ["写一个诗歌，关于冬天",
                  "晚上睡不着应该怎么办",
                  "从南京到上海的路线",
+                 "登鹳雀楼->王之涣\n夜雨寄北->",
+                 "Hamlet->Shakespeare\nOne Hundred Years of Solitude->",
                  ]
     for input in text_list:
         response, history = Generate.generate(model, query=input, tokenizer=tokenizer, max_length=512,
