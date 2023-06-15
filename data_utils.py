@@ -73,6 +73,8 @@ class NN_DataHelper(DataHelper):
         #     })
         # if config.decoder_start_token_id is None:
         #     config.decoder_start_token_id = config.bos_token_id
+
+        config.pad_token_id = config.eos_token_id
         assert config.decoder_start_token_id == config.bos_token_id
 
     def on_data_ready(self):

@@ -18,6 +18,7 @@ if __name__ == '__main__':
     dataHelper = NN_DataHelper(model_args, None, data_args)
     tokenizer, config, _,_= dataHelper.load_tokenizer_and_config(config_class_name=BaiChuanConfig,
                                                                  tokenizer_class_name=BaiChuanTokenizer)
+    config.pad_token_id = config.eos_token_id
     pl_model = MyTransformer(config=config, model_args=model_args,torch_dtype=config.torch_dtype,)
     model = pl_model.get_llm_model()
 
