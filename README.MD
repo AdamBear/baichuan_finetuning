@@ -98,4 +98,4 @@ pip install -U transformers>=4.30 deepspeed xformers bitsandbytes>=0.39 accelera
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ssbuild/llm_finetuning&type=Date)](https://star-history.com/#ssbuild/llm_finetuning&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=ssbuild/baicuan_finetuning&type=Date)](https://star-history.com/#ssbuild/baichuan_finetuning&Date)
