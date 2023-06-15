@@ -3,4 +3,4 @@ transformers>=4.30
 deepspeed
 xformers
 bitsandbytes>=0.39
-accelerate>=0.19
+accelerate>=0.20

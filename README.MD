@@ -14,7 +14,7 @@
 ```text
 dev 通过一下方式安装
 pip install -U git+https://github.com/ssbuild/deep_training.git
-pip install -U transformers>=4.30 deepspeed xformers bitsandbytes>=0.39 accelerate>=0.19
+pip install -U transformers>=4.30 deepspeed xformers bitsandbytes>=0.39 accelerate>=0.20
 ```
 
 
