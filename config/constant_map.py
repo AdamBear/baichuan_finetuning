@@ -8,9 +8,9 @@ train_info_models = {
 
     'baichuan-7b': {
         'model_type': 'baichuan',
-        'model_name_or_path': '/data/nlp/pre_models/torch/baichuan/baichuan-7b',
-        'config_name': '/data/nlp/pre_models/torch/baichuan/baichuan-7b/config.json',
-        'tokenizer_name': '/data/nlp/pre_models/torch/baichuan/baichuan-7b',
+        'model_name_or_path': '/data/nlp/pre_models/torch/baichuan/baichuan-7B',
+        'config_name': '/data/nlp/pre_models/torch/baichuan/baichuan-7B/config.json',
+        'tokenizer_name': '/data/nlp/pre_models/torch/baichuan/baichuan-7B',
     },
 
 }
